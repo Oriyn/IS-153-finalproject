@@ -4,6 +4,8 @@ namespace Dungeoneers
 {
     class MainClass
     {
+        //public static float timer = 1.0f;
+        public static string name;
         public static int proceed;
 		public static int health = 20;
         public static int damage = 20;
@@ -11,9 +13,10 @@ namespace Dungeoneers
         {
             Console.WriteLine("Welcome brave soul to Dungeoneers!");
             Console.WriteLine("What is your name Taveler?: ");
-            string name = Console.ReadLine();
+            name = Console.ReadLine();
             Console.WriteLine("Well then " + name + " Which dungeon do you choose to enter? 1, 2, or 3");
             string answer = Console.ReadLine();
+
             int dungeon = int.Parse(answer);
 
 
@@ -37,11 +40,15 @@ namespace Dungeoneers
 
             DirectionDecide();
 
-
-            if (proceed == 1)
+            if (proceed == 3)
+            {
+                Console.WriteLine("You run into a wall");
+                DirectionDecide();
+            }
+            else if (proceed == 1)
             {
                 Console.WriteLine("As you move forward you find a chest down a small coridoor. ");
-                Console.WriteLine("Do you choose to pursue the chest, yes or no?: ");
+                Console.WriteLine("Do you choose to pursue the chest?: ");
                 string getChest = Console.ReadLine();
                 if (getChest.Contains("yes"))
                 {
@@ -54,18 +61,26 @@ namespace Dungeoneers
                 }
 
             }
+            else if (proceed == 2)
+            {
+
+            }
             else
             {
                 Console.WriteLine("You died");
             }
-                
-            Console.WriteLine("Moving on down a long hallway");
 
+            Console.WriteLine("As you move on down a long hallway");
+            Console.WriteLine("It seems to never end");
+            Console.WriteLine("but lo and behold you are faced with 2 doors, one marked door 1 and the other door 2");
+            Console.WriteLine("which door do you choose" + name + "?: ");
+            string doorchoice = Console.ReadLine();
 
-        
-        
+            if (doorchoice.Contains("door 1"))
+            {
+
+            }
         }
-   
         public static void Dungeon2 ()
         {
             Console.WriteLine("You have chosen dungeon 2");
@@ -97,9 +112,9 @@ namespace Dungeoneers
                     Console.WriteLine("you proceed right");
                     proceed += 2;
                 }
-                else if (decide1 == "stright")
+                else if (decide1 == "straight")
                 {
-                  Console.WriteLine("you proceed stright");
+                  Console.WriteLine("you proceed straight");
                     proceed += 3;
                 }
                 else
@@ -112,11 +127,11 @@ namespace Dungeoneers
 
         public static void Death()
         {
-			damage =- health;
+			health -= damage;
             if (health == 0)
             {
                 Console.WriteLine("You have perished, Better luck next time adventurer");
-                Console.WriteLine("You have perished, Better luck next time adventurer");
+                Environment.Exit(0);
             }
             else
                 return;
