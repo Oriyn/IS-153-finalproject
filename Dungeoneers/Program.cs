@@ -11,6 +11,7 @@ namespace Dungeoneers
         public static int health = 20;
         public static int damage = 20;
         public static string Class;
+       
         public static void Main(string[] args)
         {
             MainMenu();
@@ -21,8 +22,8 @@ namespace Dungeoneers
             {
                 Console.WriteLine("Welcome brave soul to Dungeoneers!");
                 Console.WriteLine("Play Game = 1");
-                Console.WriteLine("Exit = 2");
-                Console.WriteLine(":");
+                Console.WriteLine("Controls = 2");
+                Console.WriteLine("Exit = 3");
                 string game = Console.ReadLine();
 
                 if (game.Contains("1"))
@@ -32,6 +33,13 @@ namespace Dungeoneers
                     GameStart();
                 }
                 else if (game.Contains("2"))
+                {
+                    Console.Clear();
+                    Console.WriteLine("Type in your answers as you see fit, and if there is no instructions press enter.");
+                    Console.ReadLine();
+                    Console.Clear();
+                }
+                else if (game.Contains("3"))
                 {
                     Environment.Exit(0);
                 }
@@ -128,20 +136,61 @@ namespace Dungeoneers
             Console.WriteLine("which door do you choose " + name + " the " + Class + "?: ");
             string doorchoice = Console.ReadLine();
 
-            if (doorchoice.Contains("door 1"))
+            if (doorchoice.Contains("1"))
             {
+                Console.WriteLine("Oh no, behind this door you run into a Demon prepare to fight adventurer! ");
+                Console.ReadLine();
+                Console.WriteLine("Quick Roll for damage !");
+                string roll = Console.ReadLine();
+				int randomnumber(int min, int max)
+				{
+					Random rnum = new Random();
+					return rnum.Next(min, max);
+				}
+                if (roll.Contains("roll"))
+                {
+                    int playerRoll = randomnumber(1, 10);
+                    Console.WriteLine("You Rolled " + playerRoll );
 
+                    if (playerRoll >= 5)
+                    {
+                       Console.WriteLine("Good job "+name+" the "+Class+" you have slain the demon");
+                        Console.WriteLine("And you also gain 20 points !!");
+                        score+= 20;
+                    }
+                    else
+                    {
+                     Console.WriteLine("You have been slain by the demon");
+                     Death();    
+                    }
+                }
+
+
+            }
+            else if (doorchoice.Contains("2"))
+            {
+                
             }
         
     }
     public static void Dungeon2()
     {
         Console.WriteLine("You have chosen dungeon 2");
+			Console.WriteLine("Looks like this dungeon is under construction");
+			Console.ReadLine();
+            menu = true;
+			Console.Clear();
+			MainMenu();
     }
 
     public static void Dungeon3()
     {
         Console.WriteLine("You have chosen dungeon 3");
+			Console.WriteLine("Looks like this dungeon is under construction");
+            Console.ReadLine();
+			menu = true;
+			Console.Clear();
+            MainMenu();
     }
 
 
