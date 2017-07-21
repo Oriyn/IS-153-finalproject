@@ -35,7 +35,8 @@ namespace Dungeoneers
                 else if (game.Contains("2"))
                 {
                     Console.Clear();
-                    Console.WriteLine("Type in your answers as you see fit, and if there is no instructions press enter.");
+                    Console.WriteLine("Type in your answers as you see fit");
+                    Console.WriteLine("If there is no instructions press enter.:");
                     Console.ReadLine();
                     Console.Clear();
                 }
@@ -62,7 +63,7 @@ namespace Dungeoneers
                 string answer = Console.ReadLine();
 
                 int dungeon = int.Parse(answer);
-
+            //first check to make sure number is integer
 
                 if (dungeon == 1)
                     Dungeon1();
@@ -134,43 +135,91 @@ namespace Dungeoneers
             Console.ReadLine();
             Console.WriteLine("but lo and behold you are faced with 2 doors, one marked Left Door and the other Right Door");
             Console.WriteLine("which door do you choose " + name + " the " + Class + "?: ");
-            string doorchoice = Console.ReadLine();
 
-            if (doorchoice.Contains("1"))
+
+            bool chooseDoor = true;
+            while (chooseDoor == true)
             {
-                Console.WriteLine("Oh no, behind this door you run into a Demon prepare to fight adventurer! ");
-                Console.ReadLine();
-                Console.WriteLine("Quick Roll for damage !");
-                string roll = Console.ReadLine();
-				int randomnumber(int min, int max)
-				{
-					Random rnum = new Random();
-					return rnum.Next(min, max);
-				}
-                if (roll.Contains("roll"))
-                {
-                    int playerRoll = randomnumber(1, 10);
-                    Console.WriteLine("You Rolled " + playerRoll );
+                string doorchoice = Console.ReadLine();
 
-                    if (playerRoll >= 5)
+                if (doorchoice.Contains("left"))
+                {
+                    Console.WriteLine("Oh no, behind this door you run into a Demon prepare to fight adventurer! ");
+                    Console.ReadLine();
+                    Console.WriteLine("Quick Roll for damage !");
+                    string roll = Console.ReadLine();
+                    int randomnumber(int min, int max)
                     {
-                       Console.WriteLine("Good job "+name+" the "+Class+" you have slain the demon");
-                        Console.WriteLine("And you also gain 20 points !!");
-                        score+= 20;
+                        Random rnum = new Random();
+                        return rnum.Next(min, max);
                     }
-                    else
+                    if (roll.Contains("roll"))
                     {
-                     Console.WriteLine("You have been slain by the demon");
-                     Death();    
+                        int playerRoll = randomnumber(1, 10);
+                        Console.WriteLine("You Rolled " + playerRoll);
+
+                        if (playerRoll >= 5)
+                        {
+                            Console.WriteLine("Good job " + name + " the " + Class + " you have slain the demon");
+                            Console.WriteLine("You gain 20 points !!");
+                            score += 20;
+                            chooseDoor = false;
+                            Console.ReadLine();
+                        }
+                        else
+                        {
+                            Console.WriteLine("You have been slain by the demon");
+                            chooseDoor = false;
+                            Death();
+                        }
                     }
                 }
+                else if (doorchoice.Contains("right"))
+                {
+                    Console.WriteLine("Oh no, behind this door you run into a dragon prepare to fight adventurer! ");
+                    Console.ReadLine();
+                    Console.WriteLine("Quick Roll for damage !");
+                    string roll = Console.ReadLine();
+                    int randomnumber(int min, int max)
+                    {
+                        Random rnum = new Random();
+                        return rnum.Next(min, max);
+                    }
+                    if (roll.Contains("roll"))
+                    {
+                        int playerRoll = randomnumber(1, 20);
+                        Console.WriteLine("You Rolled " + playerRoll);
 
+                        if (playerRoll >= 12)
+                        {
+                            Console.WriteLine("Good job " + name + " the " + Class + " you have slain the dragon");
+                            Console.WriteLine("You gain 40 points !!");
+                            score += 40;
+                            chooseDoor = false;
+                            Console.ReadLine();
 
+                        }
+                        else
+                        {
+                            Console.WriteLine("You have been slain by the dragon");
+                            chooseDoor = false;
+                            Death();
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("i dont understand");
+                }
             }
-            else if (doorchoice.Contains("2"))
-            {
-                
-            }
+
+            Console.WriteLine("After slaying the monster you see a light behind it leading to the outside");
+            Console.WriteLine("Good job adventurer you have bested Dungeon 1 ");
+            Console.WriteLine(name +" the "+Class+ " scored " +score +" points !!!");
+            Console.ReadLine();
+			menu = true;
+            Console.Clear();
+			MainMenu();
         
     }
     public static void Dungeon2()
